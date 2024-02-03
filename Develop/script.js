@@ -2,8 +2,8 @@ console.log(dayjs()) // Adding to Testlink with HTML
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-var localSettings = {};
-dayjs.local(localSettings);
+var localeSettings = {};
+dayjs.locale(localeSettings);
 $(function () {
   var currentHour = dayjs().format("H")
   // TODO: Add a listener for click events on the save button. This code should
@@ -15,7 +15,9 @@ $(function () {
   function timeColor(){
     $(".time-block").each(function(){
       var greyHour = parseInt(this.id);
-      
+      $(this).toggleClass("past", blockHour < currentHour);
+      $(this).toggleClass("present", blockHour === currentHour)
+      $(this).toggleClass("future", blockHour > currentHour)
     })
   }
   //
